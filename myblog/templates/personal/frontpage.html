@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Home | {% endblock %}
+
 {% block content %}
     <div>
 
@@ -9,7 +11,7 @@
 
         {% endfor %}
 
-        <h2>hello world! nice to meet you.</h2>
+        <h2>Front Page</h2>
         {% include 'personal/snippets/body_snippet.html' %}
     </div>
 {% endblock %}
