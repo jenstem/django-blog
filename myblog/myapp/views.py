@@ -1,15 +1,11 @@
 from django.shortcuts import render
+from blog.models import Post
 
 
 def home_screen(request):
-    print(request.headers)
-    context = {}
-    list_var = []
-    list_var.append("Value 1")
-    list_var.append("Value 2")
-    list_var.append("Value 3")
-    context["list_var"] = list_var
-    return render(request, 'personal/frontpage.html', context)
+    posts = Post.objects.all()
+    return render(request, 'personal/frontpage.html', {'posts': posts})
+
 
 def about(request):
     return render(request, 'personal/about.html')
