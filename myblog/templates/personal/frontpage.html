@@ -3,9 +3,21 @@
 {% block title %}Home | {% endblock %}
 
 {% block content %}
-    <div>
-
-        <h2>Front Page</h2>
-        {% include 'personal/snippets/body_snippet.html' %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <section class="section">
+                <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <div class="content is-medium">
+                            <h2 class="subtitle is-4">October 21, 2024</h2>
+                            <h1 class="title">Blog Post #1</h1>
+                            <p>Some starter text for the first blog post.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
+</section>
 {% endblock %}
