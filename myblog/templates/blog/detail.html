@@ -1,7 +1,24 @@
-{% extends 'myblog/base.html' %}
+{% extends 'base.html' %}
 
 {%  block title %}{{ post.title }} | {% endblock %}
 
-{%% block content %}
-    <h2>{{ post.title }}</h2>
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <section class="section">
+                    <div class="columns">
+                        <div class="column is-8 is-offset-2">
+                            <div class="content is-medium">
+                                <h2 class="subtitle is-4">{{ post.created_at|date:'m-d-Y H:i' }}</h2>
+                                <h1 class="title">{{ post.title }}</h1>
+                                <p>{{ post.intro }}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
 {% endblock %}
