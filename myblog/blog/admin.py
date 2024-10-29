@@ -23,11 +23,13 @@ class PostAdmin(admin.ModelAdmin):
         list_display (list): Fields displayed in the list view of posts.
         list_filter (list): Fields that can be used to filter the list of posts.
         inlines (list): Inline models to be displayed within the post admin.
+        prepopulated_fields (dict): Fields that are automatically populated based on other fields.
     '''
     search_fields = ['title', 'intro', 'body']
     list_display = ['title', 'slug', 'created_at']
     list_filter = ['category', 'created_at']
     inlines = [CommentItemInline]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -37,9 +39,11 @@ class CategoryAdmin(admin.ModelAdmin):
     Attributes:
         search_fields (list): Fields that can be searched in the admin interface.
         list_display (list): Fields displayed in the list view of categories.
+        prepopulated_fields (dict): Fields that are automatically populated based on other fields.
     '''
     search_fields = ['title']
     list_display = ['title']
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CommentAdmin(admin.ModelAdmin):
