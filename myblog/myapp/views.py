@@ -14,7 +14,7 @@ def home_screen(request):
     Returns:
         HttpResponse: The rendered HTML page with posts.
     '''
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status=Post.ACTIVE)
     return render(request, 'personal/frontpage.html', {'posts': posts})
 
 

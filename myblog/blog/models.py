@@ -45,6 +45,14 @@ class Post(models.Model):
         created_at (DateTimeField): The date and time the blog post was created.
         updated_at (DateTimeField): The date and time the blog post was last updated.
     '''
+    ACTIVE = 'active'
+    DRAFT = 'draft'
+
+    CHOICES_STATUS = (
+        (ACTIVE, 'Active'),
+        (DRAFT, 'Draft'),
+    )
+
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField()
@@ -53,6 +61,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=ACTIVE)
 
 
     class Meta:

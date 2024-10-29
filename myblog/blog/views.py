@@ -15,7 +15,7 @@ def detail(request, category_slug, slug):
     Returns:
         HttpResponse: Renders the post detail template with the post and comment form.
     '''
-    post = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug, status=Post.ACTIVE)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -45,5 +45,6 @@ def category(request, slug):
         HttpResponse: Renders the category template with the category details.
     '''
     category = get_object_or_404(Category, slug=slug)
+    posts = category.posts.filer(status=Post.ACTIVE)
 
-    return render(request, 'blog/category.html', {'category': category})
+    return render(request, 'blog/category.html', {'category': category, 'posts': posts})

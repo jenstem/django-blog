@@ -26,8 +26,8 @@ class PostAdmin(admin.ModelAdmin):
         prepopulated_fields (dict): Fields that are automatically populated based on other fields.
     '''
     search_fields = ['title', 'intro', 'body']
-    list_display = ['title', 'slug', 'created_at']
-    list_filter = ['category', 'created_at']
+    list_display = ['title', 'slug', 'category', 'created_at', 'status']
+    list_filter = ['category', 'created_at', 'status']
     inlines = [CommentItemInline]
     prepopulated_fields = {'slug': ('title',)}
 
