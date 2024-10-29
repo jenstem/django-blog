@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CommentForm
 from .models import Post, Category
@@ -48,3 +49,23 @@ def category(request, slug):
     posts = category.posts.filer(status=Post.ACTIVE)
 
     return render(request, 'blog/category.html', {'category': category, 'posts': posts})
+
+
+def search(request):
+    '''
+    Handles the search functionality for blog posts.
+
+    This function retrieves the search query from the request, filters the blog posts
+    based on the title containing the query, and renders the search results on the
+    specified template.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object containing the search query.
+
+    Returns:
+    HttpResponse: Renders the search results page with the query and filtered posts.
+    '''
+    query = request.GET.get('query', '')
+    posts = Post.objects.filter(status=Post.ACTIVE).filter(Q(title__icontains=query) | Q(intro__icontains=query) | Q(body__icontains=query))
+
+    return render(request, 'blog/search.html', {'query': query, 'posts': posts})
