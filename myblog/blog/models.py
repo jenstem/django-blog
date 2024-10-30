@@ -44,6 +44,8 @@ class Post(models.Model):
         content (str): Additional content for the blog post.
         created_at (DateTimeField): The date and time the blog post was created.
         updated_at (DateTimeField): The date and time the blog post was last updated.
+        status: The status of the blog post (active or draft).
+        image (img): The image of the blog post.
     '''
     ACTIVE = 'active'
     DRAFT = 'draft'
@@ -62,6 +64,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=ACTIVE)
+    image = models.ImageField(upload_to='uploads/', null=True, blank=True)
 
 
     class Meta:
