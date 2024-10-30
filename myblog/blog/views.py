@@ -46,7 +46,7 @@ def category(request, slug):
         HttpResponse: Renders the category template with the category details.
     '''
     category = get_object_or_404(Category, slug=slug)
-    posts = category.posts.filer(status=Post.ACTIVE)
+    posts = category.posts.filter(status=Post.ACTIVE)
 
     return render(request, 'blog/category.html', {'category': category, 'posts': posts})
 
