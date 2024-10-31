@@ -31,6 +31,18 @@ class Category(models.Model):
         return self.title
 
 
+    def get_absolute_url(self):
+        """
+        Returns the absolute URL for the instance based on its category slug and instance slug.
+
+        The URL is constructed in the format '/<category-slug>/<instance_slug>/'.
+
+        Returns:
+            str: The absolute URL for the instance.
+        """
+        return '/%s/' % self.slug
+
+
 class Post(models.Model):
     '''
     Represents a blog post.
@@ -82,6 +94,18 @@ class Post(models.Model):
             str: The title of the blog post.
         '''
         return self.title
+
+
+    def get_absolute_url(self):
+        """
+        Returns the absolute URL for the instance based on its category slug and instance slug.
+
+        The URL is constructed in the format '/<category-slug>/<instance_slug>/'.
+
+        Returns:
+            str: The absolute URL for the instance.
+        """
+        return '/%s/%s/' % (self.category.slug, self.slug)
 
 
 class Comment(models.Model):
